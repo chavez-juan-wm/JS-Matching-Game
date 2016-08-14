@@ -3,12 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>Matching Game</title>
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="script.js"></script>
 </head>
-<body onload="generateFace()">
+<body onload="generateFace(5)">
+
+    <div class="secondDiv">
+        <div class="border">
+            <div class="info">
+                <img src="images/Fallout-Vault-Boy-Sad.png" class="sad">
+                <h1>Game Over!</h1><br><br><br>
+                <p id="overScore">Score: </p>
+                <p id="level">Level: </p> <br>
+                <p id="highLevel">Highest Level: </p>
+                <p id="highScore">High Score: </p> <br><br>
+
+                <div class="buttons">
+                    <button class="btn-primary" id="restart">Play Again!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <h2>Matching Game</h2>
-    <p>Click on the extra smiling face on the left.</p>
+    <p>Click on the extra vault boy on the left. The faster you are the better the score!</p>
+    <p id="score"><b>Score: 2000</b></p>
     <div id="leftSide"></div>
     <div id="rightSide"></div>
 </body>

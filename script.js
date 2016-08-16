@@ -51,7 +51,7 @@ function nextLevel(event)
 {
     event.stopPropagation();
     score += 200;
-    document.getElementById("score").innerHTML = '<p id="score"><b>Score: ' + score + '</b></p>';
+    document.getElementById("score").innerHTML = '<p id="score">Score: ' + score + '</p>';
     numberOfFaces += 5;
     level++;
 
@@ -62,7 +62,7 @@ function nextLevel(event)
 
 function generateFace(faces)
 {
-    timerId = setInterval(function(){ --score; document.getElementById("score").innerHTML = '<p id="score"><b>Score: ' + score + '</b></p>'; }, 400);
+    timerId = setInterval(function(){ score = score - 10; document.getElementById("score").innerHTML = '<p id="score">Score: ' + score + '</p>'; }, 700);
 
     theBody = document.getElementsByTagName("body")[0];
     numberOfFaces = faces;

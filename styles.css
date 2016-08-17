@@ -25,7 +25,6 @@ img
 }
 .secondDiv
 {
-    display: none;
     position: absolute;
     width: 100%;
     height: 100%;
@@ -42,10 +41,14 @@ img
     width: 420px;
     border: 3px solid;
 }
+.info
+{
+    display: none;
+}
 .info h1
 {
     text-align: center;
-    font-size: 320%;
+    font-size: 170%;
 }
 .info p
 {
@@ -65,7 +68,27 @@ button
     width: 95px;
     height: 95px;
 }
-#score
+.players
+{
+
+}
+.players h1
+{
+    text-align: center;
+    font-size: 320%;
+}
+.players p
 {
     font-size: 120%;
+}
+.same
+{
+    font-size: 120%;
+    height:100%;
+    width:20%;
+    display:inline-block;
+}
+#players
+{
+    font-size: 100%;
 }

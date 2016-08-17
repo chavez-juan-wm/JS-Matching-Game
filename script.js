@@ -12,11 +12,20 @@ var restartButton;
 var timerId;
 var score = 2000;
 var level = 1;
+var player;
+var players = false;
 
 function gameOver()
 {
     clearInterval(timerId);
+    $(".players").fadeOut(100);
     $(".secondDiv").fadeIn(400);
+    $(".info").fadeIn(400);
+
+    if (players)
+        document.getElementById("losers").innerHTML = '<h1 id="losers">Player ' + player + ' lost!</h1>';
+    else
+        document.getElementById("losers").innerHTML = '<h1 id="losers"> Game Over! </h1>';
 
     var highLevel = localStorage.getItem("highLevel");
     var highScore = localStorage.getItem("highScore");
@@ -38,6 +47,12 @@ function gameOver()
 
 function restart(event)
 {
+    if(players)
+    {
+        player = 1;
+        document.getElementById("players").innerHTML = "<p class='same' id='players'><b>Player " + player + "</b></p>";
+    }
+
     event.stopPropagation();
     score = 2000;
     level = 1;
@@ -50,25 +65,52 @@ function restart(event)
 function nextLevel(event)
 {
     event.stopPropagation();
-    score += 200;
-    document.getElementById("score").innerHTML = '<p id="score">Score: ' + score + '</p>';
-    numberOfFaces += 5;
-    level++;
 
-    $(".delete").remove();
-    clearTimeout(timerId);
-    generateFace(numberOfFaces);
+    if(players)
+    {
+        if (player == 1)
+            player++;
+        else if(player == 2)
+        {
+            player--;
+            numberOfFaces += 5;
+            level++;
+        }
+
+        score += 200;
+        document.getElementById("score").innerHTML = '<p id="score">Score: ' + score + '</p>';
+
+        $(".delete").remove();
+        clearTimeout(timerId);
+        generateFace(numberOfFaces);
+
+        document.getElementById("players").innerHTML = "<p class='same' id='players'><b>Player " + player + "</b></p>";
+    }
+    else
+    {
+        score += 200;
+        document.getElementById("score").innerHTML = '<p id="score">Score: ' + score + '</p>';
+        numberOfFaces += 5;
+        level++;
+
+        $(".delete").remove();
+        clearTimeout(timerId);
+        generateFace(numberOfFaces);
+    }
 }
 
 function generateFace(faces)
 {
     timerId = setInterval(function(){ score = score - 10; document.getElementById("score").innerHTML = '<p id="score">Score: ' + score + '</p>'; }, 700);
 
+    var onePlayer = document.getElementById("onePlayer");
+    var twoPlayers = document.getElementById("twoPlayers");
     theBody = document.getElementsByTagName("body")[0];
     numberOfFaces = faces;
     theLeftSide = document.getElementById("leftSide");
     theRightSide = document.getElementById("rightSide");
     restartButton = document.getElementById("restart");
+
 
     for(var i = 1; i <= numberOfFaces; i++)
     {
@@ -86,7 +128,26 @@ function generateFace(faces)
     }
     theRightSide.removeChild(theRightSide.lastChild);
     theLeftSide.lastChild.addEventListener("click", nextLevel);
-    theBody.removeEventListener("click", gameOver);
     theBody.addEventListener("click", gameOver);
     restartButton.addEventListener("click", restart);
+
+    onePlayer.addEventListener("click", function(e)
+    {
+        e.stopPropagation();
+        score = 2000;
+        $(".secondDiv").fadeOut(400);
+        $(".players").fadeout(400);
+    });
+
+    twoPlayers.addEventListener("click", function(e)
+    {
+        e.stopPropagation();
+        score = 2000;
+        document.getElementById("players").innerHTML = "<p class='same' id='players'><b>Player 1</b></p>";
+        player = 1;
+        players = true;
+
+        $(".secondDiv").fadeOut(400);
+        $(".players").fadeout(400);
+    });
 }

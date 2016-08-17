@@ -14,7 +14,7 @@
         <div class="border">
             <div class="info">
                 <img src="images/Fallout-Vault-Boy-Sad.png" class="sad">
-                <h1>Game Over!</h1><br><br><br>
+                <h1 id="losers">Game Over!</h1><br><br><br>
                 <p id="overScore">Score: </p>
                 <p id="level">Level: </p> <br>
                 <p id="highLevel">Highest Level: </p>
@@ -24,12 +24,22 @@
                     <button class="btn-primary" id="restart">Play Again!</button>
                 </div>
             </div>
+
+            <div class="players">
+                <h1>Matching Game!</h1> <br><br>
+
+                <div class="buttons">
+                    <button class="btn-primary" id="onePlayer">1 Player</button> <br><br>
+                    <button class="btn-danger" id="twoPlayers">2 Players</button>
+                </div>
+            </div>
         </div>
     </div>
 
     <h2>Matching Game</h2>
     <p>Click on the extra vault boy on the left. The faster you are the better the score!</p>
-    <p id="score">Score: 2000</p>
+    <p class="same" id="score">Score: 2000</p>
+    <p class="same" id="players"></p>
     <div id="leftSide"></div>
     <div id="rightSide"></div>
 </body>
